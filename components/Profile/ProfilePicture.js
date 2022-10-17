@@ -20,7 +20,7 @@ export default function ProfilePicture({
       <>
         {href && !onClick && (
           <Link href={href}>
-            <a className="transition-all rounded-full hover:ring-indigo-500 hover:outline-none hover:ring-2 hover:ring-offset-2">
+            <a className="aspect-square transition-all rounded-full hover:ring-indigo-500 hover:outline-none hover:ring-2 hover:ring-offset-2">
               {children}
             </a>
           </Link>
@@ -28,7 +28,7 @@ export default function ProfilePicture({
 
         {onClick && !href && (
           <button
-            className="transition-all rounded-full hover:ring-indigo-500 hover:outline-none hover:ring-2 hover:ring-offset-2"
+            className="aspect-square transition-all rounded-full hover:ring-indigo-500 hover:outline-none hover:ring-2 hover:ring-offset-2"
             onClick={onClick}
           >
             {children}
@@ -55,28 +55,28 @@ export default function ProfilePicture({
     <Wrapper>
       {!isLoading && photoURL && (
         <img
-          className={`aspect-square  inline-block rounded-full ${size}`}
+          className={`aspect-square border-2 border-gray-400  inline-block rounded-full ${size}`}
           src={photoURL}
           alt="A portrait photo of the current user"
         />
       )}
       {isLoading && (
         <div
-          className={`aspect-square  inline-block bg-gray-100 rounded-full ${size} animate-pulse`}
+          className={`aspect-square border-2 border-gray-400  inline-block bg-gray-100 rounded-full ${size} animate-pulse`}
         />
       )}
-      {!isLoading && displayName && (
+      {!isLoading && displayName && !photoURL && (
         <span
-          className={`aspect-square inline-flex items-center justify-center bg-gray-500 rounded-full ${size}`}
+          className={`aspect-square border-2 border-gray-400  inline-flex items-center justify-center bg-gray-500 rounded-full ${size}`}
         >
           <span className="font-medium leading-none text-white">
             {getInitials()}
           </span>
         </span>
       )}
-      {!isLoading && !displayName && (
+      {!isLoading && !displayName && !photoURL && (
         <span
-          className={`aspect-square  inline-block overflow-hidden bg-gray-100 rounded-full ${size}`}
+          className={`aspect-square border-2 border-gray-400  inline-block overflow-hidden bg-gray-100 rounded-full ${size}`}
         >
           <svg
             className="w-full h-full text-gray-300"
