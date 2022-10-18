@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -58,6 +59,34 @@ export default function EnterPage() {
 
   return (
     <>
+      <Head>
+        <title>OurPod: The social network for good</title>
+        <meta
+          name="description"
+          content="A new type of social network focused on connecting you, not addicting you."
+        />
+        <meta
+          property="og:title"
+          content="OurPod: The social network for good"
+        />
+        <meta
+          property="og:description"
+          content="AA new type of social network focused on connecting you, not addicting you."
+        />
+        <meta
+          property="og:image"
+          content="https://ourpod.co/facebook-banner.png"
+        />
+        <meta
+          name="twitter:card"
+          content="https://ourpod.co/facebook-banner.png"
+        />
+        <meta
+          name="twitter:title"
+          content="OurPod: The social network for good"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>

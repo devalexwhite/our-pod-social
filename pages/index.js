@@ -35,10 +35,30 @@ export default function Home() {
   return (
     <div className="w-screen overflow-hidden">
       <Head>
-        <title>OurPod: The social network for good</title>
+        <title>OurPod: Social media for social good</title>
         <meta
           name="description"
           content="A new type of social network focused on connecting you, not addicting you."
+        />
+        <meta
+          property="og:title"
+          content="OurPod: Social media for social good"
+        />
+        <meta
+          property="og:description"
+          content="AA new type of social network focused on connecting you, not addicting you."
+        />
+        <meta
+          property="og:image"
+          content="https://ourpod.co/facebook-banner.png"
+        />
+        <meta
+          name="twitter:card"
+          content="https://ourpod.co/facebook-banner.png"
+        />
+        <meta
+          name="twitter:title"
+          content="OurPod: Social media for social good"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
