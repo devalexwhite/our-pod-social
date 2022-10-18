@@ -33,7 +33,7 @@ export default function Home() {
   ];
 
   return (
-    <div>
+    <div className="w-screen overflow-hidden">
       <Head>
         <title>OurPod: The social network for good</title>
         <meta
@@ -102,7 +102,7 @@ export default function Home() {
             className="h-256 rounded-lg shadow-lg border-2 border-gray-200 mx-auto -mt-28 w-auto z-20 relative"
           />
           <div
-            className={`absolute w-full h-[20rem] md:h-[40rem] opacity-50 top-40 z-10 ${styles["pattern-background"]}`}
+            className={`absolute w-full left-0 right-0 h-[20rem] md:h-[40rem] opacity-50 top-40 z-10 ${styles["pattern-background"]}`}
           />
         </div>
         <div className="mt-16 max-w-6xl w-full mx-auto px-6 text-center">
