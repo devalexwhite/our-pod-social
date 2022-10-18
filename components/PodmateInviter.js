@@ -56,8 +56,8 @@ export default function PodmateInviter({ user }) {
         ))}
       </ul>
       <form>
-        <div className="grid grid-cols-3 gap-4 w-full">
-          <div className="col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          <div className="col-span-1 md:col-span-2">
             <Input
               name="value"
               label="Email or phone number"

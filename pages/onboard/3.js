@@ -32,7 +32,7 @@ export default function OnboardPage3() {
   };
 
   return (
-    <div className="w-screen min-h-screen bg-blue-50">
+    <div className="w-screen min-h-screen bg-blue-50 px-8">
       <div className="max-w-xl pt-16 mx-auto">
         <Logo className="w-auto h-12" />
         <h1 className="mt-8 text-4xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
