@@ -57,7 +57,7 @@ function RenderPodmatePost({ profile, currentDate }) {
           {" and wrote:"}
         </h3>
         <p className="mt-8 text-lg text-gray-500">{post.text}</p>
-        <div className="mt-6 pt-2 border-t border-gray-300 flex w-full flex-row gap-4">
+        <div className="mt-6 pt-2 border-t border-gray-300 flex w-full flex-col md:flex-row gap-4">
           {profile.phoneNumber && (
             <Button
               href={`tel:${profile.phoneNumber}`}
@@ -139,16 +139,18 @@ function PageContents({ user }) {
   return (
     <AppLayout>
       <>
-        <div className="w-full flex-col flex items-center justify-center mb-8">
-          <div className="mt-2 flex w-full justify-between flex-row">
-            <Button
-              href={"/profile"}
-              label="Your profile"
-              icon={Cog6ToothIcon}
-              variant={ButtonVariants.Text}
-              isLink={true}
-            />
-            <div className="shrink-0 flex items-center flex-col space-y-2">
+        <div className=" mb-8">
+          <div className="mt-2  w-full gap-2 justify-between grid grid-cols-1 md:grid-cols-3 ">
+            <div className="order-2 md:order-1 md:pt-8 ">
+              <Button
+                href={"/profile"}
+                label="Your profile"
+                icon={Cog6ToothIcon}
+                variant={ButtonVariants.Text}
+                isLink={true}
+              />
+            </div>
+            <div className="order-1 md:order-2 flex items-center flex-col space-y-2">
               <ProfilePicture
                 size={ProfilePictureSize.xlarge}
                 photoURL={user.photoURL}
@@ -160,15 +162,17 @@ function PageContents({ user }) {
                 icon={ArrowRightOnRectangleIcon}
               />
             </div>
-            <Button
-              href={"/podmates"}
-              label={`Podmates ${
-                pendingInvites > 0 ? `(${pendingInvites} invites)` : ""
-              }`}
-              icon={UserCircleIcon}
-              variant={ButtonVariants.Text}
-              isLink={true}
-            />
+            <div className="order-3 md:pt-8 ">
+              <Button
+                href={"/podmates"}
+                label={`Podmates ${
+                  pendingInvites > 0 ? `(${pendingInvites} invites)` : ""
+                }`}
+                icon={UserCircleIcon}
+                variant={ButtonVariants.Text}
+                isLink={true}
+              />
+            </div>
           </div>
         </div>
         <div>

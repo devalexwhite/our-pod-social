@@ -2,8 +2,8 @@ export default function Footer() {
   return (
     <footer className="bg-white">
       <div className="py-6 px-4 border-t border-gray-200">
-        <p className="text-center text-base text-gray-500">
-          OurCloud, created by{" "}
+        <p className="text-center text-sm md:text-base text-gray-500">
+          OurPod, created by{" "}
           <a
             href="https://meetthe.dev"
             className="underline text-blue-600 hover:text-blue-800"
