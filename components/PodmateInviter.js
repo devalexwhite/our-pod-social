@@ -17,11 +17,11 @@ import ProfilePicture, { ProfilePictureSize } from "./Profile/ProfilePicture";
 
 export default function PodmateInviter({ user }) {
   const firestore = useFirestore();
-  const [invite, setInvite] = useState({ email: "" });
+  const [invite, setInvite] = useState({ value: "" });
   const [sending, setSending] = useState(false);
   const invitesQuery = query(
     collection(firestore, "invites"),
-    where("sender", "==", user.uid)
+    where("from", "==", user.uid)
   );
 
   const { status, data: invites } = useFirestoreCollectionData(invitesQuery);
@@ -32,11 +32,11 @@ export default function PodmateInviter({ user }) {
     setSending(true);
 
     await addDoc(collection(firestore, "invites"), {
-      sender: user.uid,
-      email: invite.email,
+      from: user.uid,
+      to: invite.value,
     });
 
-    setInvite({ email: "" });
+    setInvite({ value: "" });
     setSending(false);
   };
 
@@ -48,7 +48,7 @@ export default function PodmateInviter({ user }) {
             <ProfilePicture size={ProfilePictureSize.medium} />
             <div className="ml-3">
               <p className="text-sm font-medium text-gray-900">
-                {invite.email}
+                {invite.value}
               </p>
               <p className="text-sm text-gray-500">Invite sent!</p>
             </div>
@@ -59,10 +59,10 @@ export default function PodmateInviter({ user }) {
         <div className="grid grid-cols-3 gap-4 w-full">
           <div className="col-span-2">
             <Input
-              name="email"
-              label="Email address"
-              type="email"
-              value={invite.email}
+              name="value"
+              label="Email or phone number"
+              type="text"
+              value={invite.value}
               onChange={(e) => onChange(e, setInvite)}
             />
           </div>

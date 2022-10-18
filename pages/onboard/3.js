@@ -1,12 +1,35 @@
 import { ArrowRightCircleIcon } from "@heroicons/react/20/solid";
+import { doc, setDoc } from "firebase/firestore";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { useUser } from "reactfire";
+import { useFirestore, useUser } from "reactfire";
 import Button, { ButtonVariants } from "../../components/Button/Button";
 import Logo from "../../components/Logo";
 import PodmateInviter from "../../components/PodmateInviter";
 
 export default function OnboardPage3() {
+  const firestore = useFirestore();
   const user = useUser();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const onFinishOnboard = async () => {
+    setLoading(true);
+    try {
+      await setDoc(
+        doc(firestore, "users", user.data.uid),
+        {
+          completedOnboard: true,
+        },
+        { merge: true }
+      );
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+      router.push("/feed");
+    }
+  };
 
   return (
     <div className="w-screen min-h-screen bg-blue-50">
@@ -37,8 +60,8 @@ export default function OnboardPage3() {
               variant={ButtonVariants.Primary}
               label="Finish"
               icon={ArrowRightCircleIcon}
-              isLink={true}
-              href="/feed"
+              onClick={onFinishOnboard}
+              loading={loading}
             />
           </div>
         </div>

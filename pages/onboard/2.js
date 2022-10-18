@@ -13,7 +13,6 @@ import ProfilePicture, {
   ProfilePictureSize,
 } from "../../components/Profile/ProfilePicture";
 import { getDownloadURL, uploadBytes } from "firebase/storage";
-import { ref } from "firebase/database";
 import { ref as sRef } from "firebase/storage";
 import { useRouter } from "next/router";
 
@@ -136,29 +135,37 @@ export default function OnboardPage2() {
   const onSubmit = async ({ displayName, phoneNumber, file }) => {
     setLoadingSubmit(true);
 
-    let photoURL = "";
+    let photoURL = user.data.photoURL;
 
-    if (file) {
-      const storageRef = sRef(storage, `${user.data.uid}/${file.name}`);
-      const uploadResult = await uploadBytes(storageRef, file);
-      photoURL = await getDownloadURL(uploadResult.ref);
+    try {
+      if (file) {
+        const storageRef = sRef(storage, `${user.data.uid}/${file.name}`);
+        const uploadResult = await uploadBytes(storageRef, file);
+        photoURL = await getDownloadURL(uploadResult.ref);
+      }
+
+      await updateProfile(user.data, {
+        displayName,
+        photoURL,
+      });
+
+      await setDoc(
+        doc(firestore, "users", user.data.uid),
+        {
+          phoneNumber,
+          displayName,
+          uid: user.data.uid,
+          photoURL,
+          email: user.data.email,
+        },
+        { merge: true }
+      );
+      router.push("/onboard/3");
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoadingSubmit(false);
     }
-
-    await updateProfile(user.data, {
-      displayName: profile.name,
-      photoURL,
-    });
-
-    await setDoc(
-      doc(firestore, "users", user.data.uid),
-      {
-        phoneNumber,
-      },
-      { merge: true }
-    );
-
-    setLoadingSubmit(false);
-    router.push("/onboard/3");
   };
 
   return (

@@ -3,10 +3,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useAuth } from "reactfire";
+import { useAuth, useFirestore } from "reactfire";
 import Button, { ButtonVariants } from "../components/Button/Button";
 import Input from "../components/Input/Input";
 import Logo from "../components/Logo";
@@ -14,13 +15,27 @@ import { onChange } from "../lib/FormHelpers";
 
 export default function EnterPage() {
   const [user, setUser] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const firestore = useFirestore();
   const auth = useAuth();
   const router = useRouter();
 
   const onLogin = async () => {
     try {
-      await signInWithEmailAndPassword(auth, user.email, user.password);
-      router.push("/feed");
+      const authResult = await signInWithEmailAndPassword(
+        auth,
+        user.email,
+        user.password
+      );
+      const profile = await getDoc(
+        doc(firestore, "users", authResult.user.uid)
+      );
+
+      const profileData = profile.data();
+      console.log(profileData);
+
+      if (profileData?.completedOnboard) router.push("/feed");
+      else router.push("/onboard/1");
     } catch (e) {
       console.error(e);
     }
@@ -28,13 +43,16 @@ export default function EnterPage() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       await createUserWithEmailAndPassword(auth, user.email, user.password);
-      onLogin();
+      await onLogin();
     } catch (e) {
-      if (e.code == "auth/email-already-in-use") onLogin();
+      if (e.code == "auth/email-already-in-use") await onLogin();
       else console.error(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,15 +69,6 @@ export default function EnterPage() {
             <h2 className="mt-6 text-3xl font-bold tracking-tight text-center text-gray-900">
               Sign in, or create a new account.
             </h2>
-            <p className="mt-2 text-sm text-center text-gray-600">
-              Trouble?{" "}
-              <a
-                href="#"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                Reset your password.
-              </a>
-            </p>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
             <div className="space-y-4">
@@ -91,6 +100,7 @@ export default function EnterPage() {
                   icon={RocketLaunchIcon}
                   variant={ButtonVariants.Primary}
                   onClick={onSubmit}
+                  loading={loading}
                 />
               </div>
             </div>

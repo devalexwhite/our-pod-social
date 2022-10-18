@@ -1,7 +1,19 @@
+import React from "react";
 import { useSigninCheck } from "reactfire";
+import EnterPage from "../pages/enter";
 
-export default function AuthWrapper() {
-  const { status, data } = useSigninCheck();
+import LoadingSpinner from "./LoadingSpinner";
 
-  return <div></div>;
+export default function AuthWrapper({ toRender }) {
+  const { status, data: signInCheck } = useSigninCheck();
+
+  return (
+    <>
+      {status == "loading" && <LoadingSpinner />}
+      {status != "loading" &&
+        signInCheck.signedIn &&
+        React.createElement(toRender, { user: signInCheck.user })}
+      {status != "loading" && !signInCheck.signedIn && <EnterPage />}
+    </>
+  );
 }

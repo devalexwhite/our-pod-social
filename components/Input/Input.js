@@ -9,6 +9,7 @@ export default function Input({
   errorText,
   value = "",
   onChange = () => {},
+  disabled = false,
 }) {
   return (
     <div>
@@ -22,12 +23,15 @@ export default function Input({
           </div>
         )}
         <input
+          disabled={disabled}
           type={type}
           name={name}
           id={name}
           value={value}
           onChange={onChange}
-          className="block w-full pr-10 text-red-900 placeholder-red-300 border-red-300 rounded-md focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
+          className={`block w-full pr-10 text-red-900 placeholder-red-300 border-red-300 rounded-md focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm ${
+            disabled ? "opacity-50" : ""
+          }`}
           placeholder={placeholder}
         />
         {errorText && (

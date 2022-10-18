@@ -14,6 +14,7 @@ export default function ProfilePicture({
   isLoading,
   href,
   onClick,
+  selected = false,
 }) {
   const Wrapper = ({ children }) => {
     return (
@@ -55,19 +56,25 @@ export default function ProfilePicture({
     <Wrapper>
       {!isLoading && photoURL && (
         <img
-          className={`aspect-square border-2 border-gray-400  inline-block rounded-full ${size}`}
+          className={`aspect-square border-2 ${
+            selected ? "border-indigo-700" : "border-gray-400"
+          }  inline-block rounded-full ${size}`}
           src={photoURL}
           alt="A portrait photo of the current user"
         />
       )}
       {isLoading && (
         <div
-          className={`aspect-square border-2 border-gray-400  inline-block bg-gray-100 rounded-full ${size} animate-pulse`}
+          className={`aspect-square border-2 ${
+            selected ? "border-indigo-700" : "border-gray-400"
+          }  inline-block bg-gray-100 rounded-full ${size} animate-pulse`}
         />
       )}
       {!isLoading && displayName && !photoURL && (
         <span
-          className={`aspect-square border-2 border-gray-400  inline-flex items-center justify-center bg-gray-500 rounded-full ${size}`}
+          className={`aspect-square border-2 ${
+            selected ? "border-indigo-700" : "border-gray-400"
+          }  inline-flex items-center justify-center bg-gray-500 rounded-full ${size}`}
         >
           <span className="font-medium leading-none text-white">
             {getInitials()}
@@ -76,7 +83,9 @@ export default function ProfilePicture({
       )}
       {!isLoading && !displayName && !photoURL && (
         <span
-          className={`aspect-square border-2 border-gray-400  inline-block overflow-hidden bg-gray-100 rounded-full ${size}`}
+          className={`aspect-square border-2 ${
+            selected ? "border-indigo-700" : "border-gray-400"
+          }  inline-block overflow-hidden bg-gray-100 rounded-full ${size}`}
         >
           <svg
             className="w-full h-full text-gray-300"
