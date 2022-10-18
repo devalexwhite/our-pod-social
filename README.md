@@ -77,6 +77,8 @@ The Feed focuses on 2 things, post your daily update, and view the updates of yo
 
 - [ ] Limit number of PodMates to 10
 - [ ] Trigger email or text when user not on OurPod is invited to be a PodMate
+- [ ] Client-side validation on inputs
+- [ ] Automatically transform phone numbers regardless of format
 
 ### Refactoring
 
@@ -90,6 +92,9 @@ The Feed focuses on 2 things, post your daily update, and view the updates of yo
 - [ ] Automatically select first PodMate in Feed view
 - [ ] List PodMates and allow deleting PodMates in `/podmates` page
 - [ ] Display progress when uploading file rather than indeterminate spinner
+- [ ] On step 3 of onboarding, it's too easy to forget to "Send" the invite and instead just hit "Finish"
+- [ ] Allow for Markdown in post field
+- [ ] Improve mood icon selection
 
 ### Testing
 
