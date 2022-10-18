@@ -46,7 +46,7 @@ export default function Home() {
         />
         <meta
           property="og:description"
-          content="AA new type of social network focused on connecting you, not addicting you."
+          content="A new type of social network focused on connecting you, not addicting you."
         />
         <meta
           property="og:image"
