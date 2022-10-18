@@ -161,10 +161,10 @@ function ReceivedInvites({ profile, user }) {
         <div className="w-full h-32 animate-pulse rounded-lg bg-gray-200"></div>
       )}
       {invitesStatus != "loading" && inviteProfiles.length > 0 && (
-        <ul className="space-y-4">
+        <ul className=" divide-y">
           {inviteProfiles.map((inviteProfile) => (
             <li
-              className="flex flex-row justify-between items-center w-full"
+              className="flex flex-col md:flex-row justify-between items-start md:items-center w-full py-4"
               key={inviteProfile.from}
             >
               <div className="flex flex-row items-center space-x-4">
@@ -177,10 +177,11 @@ function ReceivedInvites({ profile, user }) {
                   {inviteProfile.displayName}
                 </p>
               </div>
-              <div className="flex flex-row space-x-2">
+              <div className="w-full md:w-auto flex flex-col mt-6 md:mt-0 md:flex-row space-y-2 md:space-x-2">
                 <Button
                   label="Accept"
                   onClick={() => onAccept(inviteProfile)}
+                  variant={ButtonVariants.Secondary}
                   loading={loading}
                 ></Button>
                 <Button

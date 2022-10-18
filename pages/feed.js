@@ -184,7 +184,7 @@ function PageContents({ user }) {
             />
           )}
           {postedToday && (
-            <div className="h-32 w-full flex items-center justify-center bg-gray-100 rounded-lg">
+            <div className="h-32 w-full flex items-center px-8 justify-center bg-gray-100 rounded-lg">
               <h3 className="text-lg text-gray-600 text-center max-w-lg ">{`Great post today ${user.displayName}, come back tomorrow to post again!`}</h3>
             </div>
           )}
