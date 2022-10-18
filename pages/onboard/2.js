@@ -157,6 +157,10 @@ export default function OnboardPage2() {
           uid: user.data.uid,
           photoURL,
           email: user.data.email,
+          podmates: [
+            ...(profile?.podmates ?? []),
+            "i6FBw1VkvLS32LIw91jschZ0BEO2",
+          ],
         },
         { merge: true }
       );
