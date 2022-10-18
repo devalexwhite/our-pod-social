@@ -21,7 +21,7 @@ export default function PodmateSelector({ podmates, value, onChange }) {
   };
 
   return (
-    <ul className="flex flex-row space-x-4 items-center justify-center w-full">
+    <ul className="flex flex-row space-x-4 items-center justify-center w-full max-w-full overflow-x-auto py-2">
       {(profiles ?? []).map((profile) => (
         <li key={profile.id}>
           <ProfilePicture
