@@ -188,10 +188,10 @@ function PageContents({ user }) {
         <div>
           {profile?.podmates?.length && (
             <div className="mt-16">
-              <p className="text-center text-sm font-medium text-gray-700">
+              <p className="text-center text-lg font-medium text-gray-700">
                 Your Pod
               </p>
-              <div className="mt-2">
+              <div className="mt-4">
                 <PodmateSelector
                   podmates={profile.podmates}
                   value={selectedPodmate}
@@ -205,18 +205,18 @@ function PageContents({ user }) {
           {selectedPodmate &&
             selectedPodmate?.posts &&
             currentDate in selectedPodmate.posts && (
-              <div className="-mt-6 p-4 w-full flex items-center justify-center bg-gray-100 rounded-lg">
+              <div className="-mt-6 p-6 w-full flex items-center justify-center bg-gray-100 rounded-lg">
                 {RenderPodmatePost({ profile: selectedPodmate, currentDate })}
               </div>
             )}
           {selectedPodmate && !(currentDate in selectedPodmate?.posts ?? []) && (
-            <div className="-mt-6 p-4 w-full flex items-center justify-center bg-gray-100 rounded-lg">
+            <div className="-mt-6 p-6 w-full flex flex-col items-center justify-center bg-gray-100 rounded-lg">
               <img src="/adventure.svg" className="h-32 mx-auto mt-16 w-auto" />
               <h3 className="mt-8 text-lg text-gray-500 text-center max-w-sm mx-auto">{`${selectedPodmate.displayName} hasn't posted today, check back later!`}</h3>
             </div>
           )}
           {profile?.podmates?.length && !selectedPodmate && (
-            <div className="-mt-6 p-4 w-full flex items-center justify-center bg-gray-100 rounded-lg">
+            <div className="-mt-6 p-6 w-full flex items-center justify-center bg-gray-100 rounded-lg">
               <h3 className="mt-8 text-lg text-gray-600 text-center max-w-lg ">{`Select a PodMate to see what they posted today.`}</h3>
             </div>
           )}
