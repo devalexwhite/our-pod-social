@@ -12,7 +12,7 @@ export default function Footer() {
           </a>{" "}
           with ☕ and 🐧 in Ohio. Contribute on{" "}
           <a
-            href="https://meetthe.dev"
+            href="https://github.com/devalexwhite/our-pod-social"
             className="underline text-blue-600 hover:text-blue-800"
           >
             <svg
