@@ -83,7 +83,7 @@ const RenderForm = ({
         type="tel"
         label="Enter a phone number for friends to find you and reach out with (optional):"
         name="phoneNumber"
-        placeholder="(123) 456-7890"
+        placeholder="1234567890"
         value={state.phoneNumber}
         onChange={(e) => onChange(e, setState)}
       />

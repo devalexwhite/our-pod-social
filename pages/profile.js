@@ -137,7 +137,7 @@ function PageContents({ user }) {
             type="tel"
             label="Phone number"
             name="phoneNumber"
-            placeholder="(123) 456-7890"
+            placeholder="1234567890"
             value={state.phoneNumber}
             onChange={(e) => onChange(e, setState)}
           />
