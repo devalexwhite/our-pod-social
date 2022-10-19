@@ -104,7 +104,7 @@ function PageContents({ user }) {
 
   useEffect(() => {
     if (profile && !profile?.completedOnboard) router.push("/onboard/1");
-    if (profile?.posts && currentDate in profile.posts) {
+    if (profile?.posts && currentDate in (profile?.posts ?? [])) {
       setPostedToday(true);
       setPost(profile.posts[currentDate]);
     }
@@ -208,12 +208,12 @@ function PageContents({ user }) {
         <div>
           {selectedPodmate &&
             selectedPodmate?.posts &&
-            currentDate in selectedPodmate.posts && (
+            currentDate in (selectedPodmate?.posts ?? []) && (
               <div className="-mt-6 p-6 w-full flex items-center justify-center bg-gray-100 rounded-lg">
                 {RenderPodmatePost({ profile: selectedPodmate, currentDate })}
               </div>
             )}
-          {selectedPodmate && !(currentDate in selectedPodmate?.posts ?? []) && (
+          {selectedPodmate && !(currentDate in (selectedPodmate?.posts ?? [])) && (
             <div className="-mt-6 p-6 w-full flex flex-col items-center justify-center bg-gray-100 rounded-lg">
               <img src="/adventure.svg" className="h-32 mx-auto mt-16 w-auto" />
               <h3 className="mt-8 text-lg text-gray-500 text-center max-w-sm mx-auto">{`${selectedPodmate.displayName} hasn't posted today, check back later!`}</h3>
